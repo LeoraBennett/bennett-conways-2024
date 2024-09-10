@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class GameOfLifeTest {
 
     @Test
-    public void NextGeneration() {
+    public void nextGeneration() {
         GameOfLife game = new GameOfLife(5, 5);
         game.setGrid(new int[][]{
                 {0, 0, 0, 0, 0},
