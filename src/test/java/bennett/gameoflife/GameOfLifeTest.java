@@ -1,10 +1,13 @@
+package bennett.gameoflife;
+
+import bennett.gameoflife.GameOfLife;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameOfLifeTest {
 
     @Test
-    public void nextGeneration() {
+    public void nextGen() {
         GameOfLife game = new GameOfLife(5, 5);
         game.setGrid(new int[][]{
                 {0, 0, 0, 0, 0},
