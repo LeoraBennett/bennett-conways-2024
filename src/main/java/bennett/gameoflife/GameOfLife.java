@@ -50,7 +50,7 @@ public class GameOfLife {
                 int newCol = col + j;
 
                 if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
-                    count += grid[newRow][newCol];;
+                    count += grid[newRow][newCol];
                 }
             }
         }
