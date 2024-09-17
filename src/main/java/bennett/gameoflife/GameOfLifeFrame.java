@@ -44,11 +44,4 @@ public class GameOfLifeFrame extends JFrame {
         gameOfLife.setCell(1, 2, 1);
         gameOfLife.setCell(2, 2, 1);
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            GameOfLifeFrame frame = new GameOfLifeFrame();
-            frame.setVisible(true);
-        });
-    }
 }
