@@ -1,6 +1,11 @@
 package bennett.gameoflife;
 
 public class GameOfLife {
+
+    private int rows;
+    private int cols;
+    private int[][] grid;
+
     public int getRows() {
         return rows;
     }
@@ -12,10 +17,6 @@ public class GameOfLife {
     public int[][] getGrid() {
         return grid;
     }
-
-    private int rows;
-    private int cols;
-    private int[][] grid;
 
     public GameOfLife(int rows, int cols) {
         this.rows = rows;

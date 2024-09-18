@@ -29,10 +29,18 @@ public class GameOfLifeComponent extends JComponent {
         }
 
         g.setColor(Color.BLACK);
-        for (int row = 0; row < gameOfLife.getRows(); row++) {
-            for (int col = 0; col < gameOfLife.getCols(); col++) {
-                g.drawRect(col * cellSize, row * cellSize, cellSize, cellSize);
-            }
+        int width = gameOfLife.getCols() * cellSize;
+        int height = gameOfLife.getRows() * cellSize;
+
+        for (int col = 0; col <= gameOfLife.getCols(); col++) {
+            int x = col * cellSize;
+            g.drawLine(x, 0, x, height);
         }
+
+        for (int row = 0; row <= gameOfLife.getRows(); row++) {
+            int y = row * cellSize;
+            g.drawLine(0, y, width, y);
+        }
+
     }
 }
