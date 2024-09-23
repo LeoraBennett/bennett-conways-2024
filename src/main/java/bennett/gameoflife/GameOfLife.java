@@ -73,6 +73,11 @@ public class GameOfLife {
         return count;
     }
 
+    public void initFromRLE(String rleData) {
+        GameOfLife game = RleParser.parseRLE(rleData);
+        this.setGrid(game.getGrid());
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
