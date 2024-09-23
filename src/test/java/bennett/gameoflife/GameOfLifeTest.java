@@ -33,16 +33,18 @@ class GameOfLifeTest {
     }
 
     @Test
-    public void testRleParser() {
+    public void rleParser() {
         // given
         String rleData = """
-           #C This is a glider.
-           x = 3, y = 3
-           bo$2bo$3o!
-        """;
+                   #C This is a glider.
+                   x = 3, y = 3
+                   bo$2bo$3o!
+                """;
+
+        RleParser parser = new RleParser();
 
         // when
-        GameOfLife game = RleParser.parseRle(rleData);
+        GameOfLife game = parser.parseRle(rleData);
 
         // then
         int[][] expectedGrid = {

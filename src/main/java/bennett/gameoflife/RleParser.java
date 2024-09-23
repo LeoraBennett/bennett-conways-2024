@@ -3,7 +3,8 @@ package bennett.gameoflife;
 import java.util.Scanner;
 
 public class RleParser {
-    public static GameOfLife parseRle(String rleData) {
+
+    public GameOfLife parseRle(String rleData) {
         Scanner scanner = new Scanner(rleData);
         int rows = 0;
         int cols = 0;
