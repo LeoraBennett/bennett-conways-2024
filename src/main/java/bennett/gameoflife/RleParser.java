@@ -3,9 +3,10 @@ package bennett.gameoflife;
 import java.util.Scanner;
 
 public class RleParser {
-    public static GameOfLife parseRLE(String rleData) {
+    public static GameOfLife parseRle(String rleData) {
         Scanner scanner = new Scanner(rleData);
-        int rows = 0, cols = 0;
+        int rows = 0;
+        int cols = 0;
         StringBuilder pattern = new StringBuilder();
 
         while (scanner.hasNextLine()) {
@@ -24,14 +25,17 @@ public class RleParser {
 
         GameOfLife game = new GameOfLife(rows, cols);
 
-        int currentRow = 0, currentCol = 0;
+        int currentRow = 0;
+        int currentCol = 0;
         int count = 0;
         for (int i = 0; i < pattern.length(); i++) {
             char ch = pattern.charAt(i);
             if (Character.isDigit(ch)) {
                 count = count * 10 + Character.getNumericValue(ch);
             } else {
-                if (count == 0) count = 1;
+                if (count == 0) {
+                    count = 1;
+                }
                 switch (ch) {
                     case 'b':
                         currentCol += count;
@@ -47,6 +51,9 @@ public class RleParser {
                         currentCol = 0;
                         break;
                     case '!':
+                        break;
+                    default:
+                        System.out.println("Unexpected character: " + ch);
                         break;
                 }
                 count = 0;

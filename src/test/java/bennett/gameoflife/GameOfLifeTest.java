@@ -1,6 +1,5 @@
 package bennett.gameoflife;
 
-import bennett.gameoflife.GameOfLife;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -34,7 +33,7 @@ class GameOfLifeTest {
     }
 
     @Test
-    public void testRLEParser() {
+    public void testRleParser() {
         // given
         String rleData = """
            #C This is a glider.
@@ -43,7 +42,7 @@ class GameOfLifeTest {
         """;
 
         // when
-        GameOfLife game = RleParser.parseRLE(rleData);
+        GameOfLife game = RleParser.parseRle(rleData);
 
         // then
         int[][] expectedGrid = {
