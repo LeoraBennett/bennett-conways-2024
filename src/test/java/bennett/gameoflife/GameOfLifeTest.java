@@ -44,7 +44,9 @@ class GameOfLifeTest {
         RleParser parser = new RleParser();
 
         // when
-        GameOfLife game = parser.parseRle(rleData);
+        int[][] parsedGrid = parser.parseRle(rleData);
+        GameOfLife game = new GameOfLife(3, 3);
+        game.setGrid(parsedGrid);
 
         // then
         int[][] expectedGrid = {

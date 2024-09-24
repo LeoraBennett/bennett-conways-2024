@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class RleParser {
 
-    public GameOfLife parseRle(String rleData) {
+    public int[][] parseRle(String rleData) {
         Scanner scanner = new Scanner(rleData);
         int rows = 0;
         int cols = 0;
@@ -24,7 +24,7 @@ public class RleParser {
             }
         }
 
-        GameOfLife game = new GameOfLife(rows, cols);
+        int[][] grid = new int[rows][cols];
 
         int currentRow = 0;
         int currentCol = 0;
@@ -43,7 +43,7 @@ public class RleParser {
                         break;
                     case 'o':
                         for (int j = 0; j < count; j++) {
-                            game.setCell(currentRow, currentCol, 1);
+                            grid[currentRow][currentCol] = 1;
                             currentCol++;
                         }
                         break;
@@ -61,6 +61,6 @@ public class RleParser {
             }
         }
 
-        return game;
+        return grid;
     }
 }

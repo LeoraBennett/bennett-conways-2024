@@ -75,8 +75,8 @@ public class GameOfLife {
 
     public void initFromRle(String rleData) {
         RleParser parser = new RleParser();
-        GameOfLife game = parser.parseRle(rleData);
-        this.setGrid(game.getGrid());
+        int[][] gridFromRle = parser.parseRle(rleData);
+        this.setGrid(gridFromRle);
     }
 
     @Override
