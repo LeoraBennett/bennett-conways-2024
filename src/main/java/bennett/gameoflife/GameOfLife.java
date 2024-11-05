@@ -2,6 +2,7 @@ package bennett.gameoflife;
 
 public class GameOfLife {
 
+    private final RleParser rleParser = new RleParser();
     private int rows;
     private int cols;
     private int[][] grid;
@@ -73,10 +74,9 @@ public class GameOfLife {
         return count;
     }
 
-    public void initFromRle(String rleData) {
-        RleParser parser = new RleParser();
-        int[][] gridFromRle = parser.parseRle(rleData);
-        this.setGrid(gridFromRle);
+    public void parseRle(String rleData) {
+        int[][] newGrid = rleParser.parseRle(rleData);
+        setGrid(newGrid);
     }
 
     @Override

@@ -2,11 +2,11 @@ package bennett.gameoflife;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class GameOfLifeTest {
+    private final GameOfLifeFrame frame = new GameOfLifeFrame();
 
     @Test
     public void nextGen() {

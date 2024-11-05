@@ -2,46 +2,59 @@ package bennett.gameoflife;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+
 
 public class GameOfLifeFrame extends JFrame {
-    private final GameOfLife gameOfLife = new GameOfLife(40, 40);
-    private Timer timer;
+    GameOfLife gameOfLife = new GameOfLife(1000, 1000);
+    GameOfLifeComponent gameOfLifeComponent = new GameOfLifeComponent(gameOfLife);
+    GameOfLifeController gameOfLifeController = new GameOfLifeController(gameOfLife, gameOfLifeComponent);
+
+    gameOfLifeComponent.add
 
     public GameOfLifeFrame() {
-        setSize(800, 600);
+        setSize(1000, 1000);
         setTitle("Game Of Life");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        GameOfLifeComponent gameComponent = new GameOfLifeComponent(gameOfLife);
-        add(gameComponent, BorderLayout.CENTER);
+        add(gameOfLifeComponent, BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel();
         add(buttonPanel, BorderLayout.SOUTH);
 
         JButton startButton = new JButton("Start");
         JButton stopButton = new JButton("Stop");
+        JButton pasteButton = new JButton("Paste");
 
         buttonPanel.add(startButton);
         buttonPanel.add(stopButton);
+        buttonPanel.add(pasteButton);
 
-        timer = new Timer(1000, e -> {
-            gameOfLife.nextGen();
-            gameComponent.repaint();
+        startButton.addActionListener((ActionEvent e) -> {
+            gameOfLifeController.startTimer();
         });
 
-        startButton.addActionListener(e -> timer.start());
-        stopButton.addActionListener(e -> timer.stop());
+        stopButton.addActionListener((ActionEvent e) -> {
+        gameOfLifeController.stopTimer();
+        });
 
-        gliderPattern();
-        gameComponent.repaint();
-    }
-
-    private void gliderPattern() {
-        gameOfLife.setCell(1, 0, 1);
-        gameOfLife.setCell(2, 1, 1);
-        gameOfLife.setCell(0, 2, 1);
-        gameOfLife.setCell(1, 2, 1);
-        gameOfLife.setCell(2, 2, 1);
+        pasteButton.addActionListener((ActionEvent e) -> {
+            try {
+                String clipboardContent = (String) Toolkit.getDefaultToolkit()
+                        .getSystemClipboard()
+                        .getData(DataFlavor.stringFlavor);
+                gameOfLifeController.pasteFromClipboard(clipboardContent);
+            } catch (UnsupportedFlavorException ex) {
+                throw new RuntimeException(ex);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        buttonPanel.add(pasteButton);
     }
 }
+
