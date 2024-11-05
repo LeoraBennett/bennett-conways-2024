@@ -3,7 +3,6 @@ package bennett.gameoflife;
 import java.util.Scanner;
 
 public class RleParser {
-
     public int[][] parseRle(String rleData) {
         Scanner scanner = new Scanner(rleData);
         int rows = 0;
@@ -24,11 +23,12 @@ public class RleParser {
             }
         }
 
-        int[][] grid = new int[rows][cols];
+        int[][] grid = new int[100][100];
 
         int currentRow = 0;
         int currentCol = 0;
         int count = 0;
+
         for (int i = 0; i < pattern.length(); i++) {
             char ch = pattern.charAt(i);
             if (Character.isDigit(ch)) {
@@ -43,8 +43,7 @@ public class RleParser {
                         break;
                     case 'o':
                         for (int j = 0; j < count; j++) {
-                            grid[currentRow][currentCol] = 1;
-                            currentCol++;
+                            grid[currentRow][currentCol++] = 1;
                         }
                         break;
                     case '$':
@@ -61,6 +60,16 @@ public class RleParser {
             }
         }
 
-        return grid;
+        int rowOffset = (100 - rows) / 2;
+        int colOffset = (100 - cols) / 2;
+
+        int[][] centeredGrid = new int[100][100];
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                centeredGrid[row + rowOffset][col + colOffset] = grid[row][col];
+            }
+        }
+
+        return centeredGrid;
     }
 }

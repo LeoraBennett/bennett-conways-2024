@@ -6,6 +6,7 @@ import java.awt.*;
 public class GameOfLifeComponent extends JComponent {
     private final GameOfLife gameOfLife;
 
+    private final int cellSize = 15;
     public GameOfLifeComponent(GameOfLife gameOfLife) {
         this.gameOfLife = gameOfLife;
     }
@@ -13,8 +14,6 @@ public class GameOfLifeComponent extends JComponent {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        int cellSize = 15;
 
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, getWidth(), getHeight());
@@ -42,5 +41,9 @@ public class GameOfLifeComponent extends JComponent {
             g.drawLine(0, y, width, y);
         }
 
+    }
+
+    public int getCellSize() {
+        return cellSize;
     }
 }
